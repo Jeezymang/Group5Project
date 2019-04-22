@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerBehavior : MonoBehaviour {
 
     public int speed = 3;
+    public int phoneSpeed = 10;
 	// Use this for initialization
 	void Start () {
 		
@@ -29,6 +30,16 @@ public class PlayerBehavior : MonoBehaviour {
         {
             transform.position += Vector3.back * speed * Time.deltaTime;
         }
+        //For phone movement
+        Vector3 direction = Vector3.zero;
+        direction.x = Input.acceleration.x;
+        direction.z = -Input.acceleration.z;
+        //if (direction.sqrMagnitude > 1)
+        //    direction.Normalize();
+
+        direction *= Time.deltaTime;
+
+        transform.position = transform.position += (direction * phoneSpeed);
     }
 
 
