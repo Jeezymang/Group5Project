@@ -13,7 +13,7 @@ public class CameraFollow : MonoBehaviour {
     void Start()
     {
         //Calculate and store the offset value by getting the distance between the player's position and camera's position.
-        offset = transform.position - player.transform.position;
+        offset = ((transform.position - player.transform.position).normalized) * 17;
     }
 
     // LateUpdate is called after Update each frame
@@ -23,6 +23,13 @@ public class CameraFollow : MonoBehaviour {
         if (player != null)
         {
             transform.position = player.transform.position + offset;
+            //transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles - new Vector3(0, 35, 0));
+            //transform.LookAt(player.transform);
+            //transform.rotation = Quaternion.Euler(new Vector3(45, 45, 0));
+            Vector3 newCamPos = player.transform.position + (-player.transform.forward * 15/*follow distance*/);
+            newCamPos.y += 3; //FollowHeight
+            transform.position = newCamPos;
+            transform.LookAt(player.transform);
         }
     }
 }
