@@ -6,7 +6,7 @@ public class PlayerBehavior : MonoBehaviour {
     
     public int speed = 3;
     public int phoneSpeed = 10;
-    int rotateSpeed = 2;
+    public float rotateSpeed = 1;
 	// Use this for initialization
 	void Start () {
 		
@@ -33,18 +33,14 @@ public class PlayerBehavior : MonoBehaviour {
         }
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            var rads = (this.transform.eulerAngles.y - 90) * (Mathf.PI / 180);
-            var plyDirection = new Vector3(Mathf.Cos(rads), 0, -Mathf.Sin(rads));
-            transform.position += (plyDirection * speed) * Time.deltaTime;
             //This must be changed to move in the direction that the object is facing.
             //transform.position += Vector3.forward * speed * Time.deltaTime;
+            transform.localPosition += transform.forward * speed * Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
-            var rads = (this.transform.eulerAngles.y - 90) * (Mathf.PI / 180);
-            var plyDirection = new Vector3(-Mathf.Cos(rads), 0, Mathf.Sin(rads));
-            transform.position += new Vector3(Mathf.Abs(plyDirection.x * speed), Mathf.Abs(plyDirection.y * speed), Mathf.Abs(plyDirection.z * speed)) * -Time.deltaTime;
-            //transform.position += Vector3.back * speed * Time.deltaTime;
+            transform.localPosition -= transform.forward * speed * Time.deltaTime;
+            //transform.position += (plyDirection * speed) * Time.deltaTime;
         }
         //For phone movement
         Vector3 direction = Vector3.zero;
