@@ -7,8 +7,16 @@ public class IngameMenu : MonoBehaviour {
 
     public GameObject OptionsPanel;
     public Button PauseButton;
+    public Text ScoreText;
+    public GameObject PauseText;
+
+    GameHandler gameHandler;
 	// Use this for initialization
 	void Start () {
+        var handler = GameObject.Find("GameHandler");
+        if (handler)
+            gameHandler = handler.GetComponent<GameHandler>();
+
         OptionsPanel.SetActive(false);
 	}
 
@@ -28,6 +36,8 @@ public class IngameMenu : MonoBehaviour {
             var colors = PauseButton.colors;
             colors.normalColor = Color.red;
             PauseButton.colors = colors;
+            gameHandler.IsPaused = true;
+            PauseText.SetActive(true);
         }
         else
         {
@@ -35,6 +45,8 @@ public class IngameMenu : MonoBehaviour {
             var colors = PauseButton.colors;
             colors.normalColor = Color.white;
             PauseButton.colors = colors;
+            gameHandler.IsPaused = false;
+            PauseText.SetActive(false);
         }
             
     }
@@ -45,5 +57,11 @@ public class IngameMenu : MonoBehaviour {
             AudioListener.volume = 0;
         else
             AudioListener.volume = 1;
+    }
+
+    void Update()
+    {
+        if (gameHandler == null) return;
+        ScoreText.text = "Score: " + gameHandler.Score;
     }
 }

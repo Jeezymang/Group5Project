@@ -7,13 +7,17 @@ public class PlayerBehavior : MonoBehaviour {
     public int speed = 3;
     public int phoneSpeed = 10;
     public float rotateSpeed = 1;
+    GameHandler gameHandler;
 	// Use this for initialization
 	void Start () {
-		
+        var handler = GameObject.Find("GameHandler");
+        if (handler)
+            gameHandler = handler.GetComponent<GameHandler>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
+        if (gameHandler.IsPaused) return;
         if (Input.GetKey(KeyCode.LeftArrow))
         {
             var eulerAngles = this.transform.eulerAngles;
@@ -54,13 +58,23 @@ public class PlayerBehavior : MonoBehaviour {
         transform.position = transform.position += (direction * phoneSpeed);
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Coin") {
+            gameHandler.addScore(1);
+            Destroy(other.gameObject);
+        }
+    }
+
 
     private void OnCollisionEnter(Collision collision)
 
     {
         if (collision.gameObject.tag == "Coin")
         {
-            Destroy (collision.gameObject);
+            //Made the coin into a trigger.
+            //gameHandler.addScore(1);
+            //Destroy (collision.gameObject);
         }
 
         else if (collision.gameObject.tag == "Foe")
