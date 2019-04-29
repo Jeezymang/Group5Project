@@ -8,7 +8,9 @@ public class CameraFollow : MonoBehaviour {
 
 
     private Vector3 offset;         //Private variable to store the offset distance between the player and camera
-
+    public int FollowDistance = 15;
+    public int FollowHeight = 4;
+    public int UpOffset = 2;
     // Use this for initialization
     void Start()
     {
@@ -26,10 +28,17 @@ public class CameraFollow : MonoBehaviour {
             //transform.rotation = Quaternion.Euler(player.transform.rotation.eulerAngles - new Vector3(0, 35, 0));
             //transform.LookAt(player.transform);
             //transform.rotation = Quaternion.Euler(new Vector3(45, 45, 0));
-            Vector3 newCamPos = player.transform.position + (-player.transform.forward * 15/*follow distance*/);
-            newCamPos.y += 3; //FollowHeight
+            Vector3 newCamPos = player.transform.position + (-player.transform.forward * FollowDistance);
+            newCamPos.y += FollowHeight; 
             transform.position = newCamPos;
-            transform.LookAt(player.transform);
+            transform.LookAt(player.transform.position + player.transform.up.normalized * UpOffset);
+            RaycastHit rayHit;
+            if (Physics.Raycast(player.transform.position, transform.TransformDirection(-Vector3.forward), out rayHit, 15))
+            {
+                Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward) * rayHit.distance, Color.yellow);
+                Debug.Log("Did Hit");
+                transform.position = new Vector3(rayHit.point.x, transform.position.y * 0.70f, rayHit.point.z);
+            }
         }
     }
 }
