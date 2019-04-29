@@ -8,11 +8,13 @@ public class PlayerBehavior : MonoBehaviour {
     public int phoneSpeed = 10;
     public float rotateSpeed = 1;
     GameHandler gameHandler;
+    public Rigidbody rig;
 	// Use this for initialization
 	void Start () {
         var handler = GameObject.Find("GameHandler");
         if (handler)
             gameHandler = handler.GetComponent<GameHandler>();
+        rig = this.gameObject.GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
@@ -39,13 +41,15 @@ public class PlayerBehavior : MonoBehaviour {
         {
             //This must be changed to move in the direction that the object is facing.
             //transform.position += Vector3.forward * speed * Time.deltaTime;
-            transform.localPosition += transform.forward * speed * Time.deltaTime;
+            transform.localPosition += transform.forward * speed * Time.deltaTime ;
         }
         if (Input.GetKey(KeyCode.DownArrow))
         {
             transform.localPosition -= transform.forward * speed * Time.deltaTime;
             //transform.position += (plyDirection * speed) * Time.deltaTime;
         }
+
+        
         //For phone movement
         Vector3 direction = Vector3.zero;
         direction.x = Input.acceleration.x;
@@ -56,6 +60,9 @@ public class PlayerBehavior : MonoBehaviour {
         direction *= Time.deltaTime;
 
         transform.position = transform.position += (direction * phoneSpeed);
+        
+
+        
     }
 
     private void OnTriggerEnter(Collider other)

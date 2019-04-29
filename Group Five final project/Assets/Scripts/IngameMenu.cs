@@ -26,6 +26,7 @@ public class IngameMenu : MonoBehaviour {
             OptionsPanel.SetActive(false);
         else
             OptionsPanel.SetActive(true);
+        PauseButtonClicked();
     }
 
     public void PauseButtonClicked()
