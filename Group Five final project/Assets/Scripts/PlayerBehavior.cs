@@ -81,6 +81,9 @@ public class PlayerBehavior : MonoBehaviour {
         {
             Destroy(this.gameObject);
             Destroy(collision.gameObject);
+            GameObject sceneCanvas = GameObject.Find("Canvas");
+            if (sceneCanvas)
+                sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
         }
         
     }

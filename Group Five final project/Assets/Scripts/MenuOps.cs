@@ -14,6 +14,7 @@ public class MenuOps : MonoBehaviour {
     public void ScoreboardButtonClicked()
     {
         //Load the scoreboard
+        Application.OpenURL("https://antonop7.uwmsois.com/scoreboard.php");
     }
 
     public void ExitButtonClicked()
