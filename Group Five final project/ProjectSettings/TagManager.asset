@@ -7,6 +7,8 @@ TagManager:
   - Coin
   - Foe
   - handle
+  - star
+  - speed
   layers:
   - Default
   - TransparentFX

@@ -9,6 +9,8 @@ public class PlayerBehavior : MonoBehaviour {
     public float rotateSpeed = 1;
     GameHandler gameHandler;
     public Rigidbody rig;
+    public bool invincible = false;
+
 	// Use this for initialization
 	void Start () {
         var handler = GameObject.Find("GameHandler");
@@ -71,6 +73,20 @@ public class PlayerBehavior : MonoBehaviour {
             gameHandler.addScore(1);
             Destroy(other.gameObject);
         }
+
+        else if (other.gameObject.tag == "star")
+        {
+            Destroy(other.gameObject);
+            StopCoroutine(invulnerability());
+            StartCoroutine(invulnerability());
+        }
+
+        else if (other.gameObject.tag == "speed")
+        {
+            Destroy(other.gameObject);
+            StopCoroutine(speedUp());
+            StartCoroutine(speedUp());
+        }
     }
 
 
@@ -86,19 +102,19 @@ public class PlayerBehavior : MonoBehaviour {
 
         else if (collision.gameObject.tag == "Foe")
         {
-            Destroy(this.gameObject);
+            if (invincible != true)
+            {
+                Destroy(this.gameObject);
+            }
             Destroy(collision.gameObject);
             GameObject sceneCanvas = GameObject.Find("Canvas");
             if (sceneCanvas)
                 sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
         }
 
-        else if (collision.gameObject.tag == "speed")
-        {
-            Destroy(collision.gameObject);
-            StopCoroutine(speedUp());
-            StartCoroutine(speedUp());
-        }
+        
+
+        
         
     }
 
@@ -111,4 +127,12 @@ public class PlayerBehavior : MonoBehaviour {
 
 
     }
+
+    public IEnumerator invulnerability()
+    {
+        invincible = true;
+        yield return new WaitForSeconds(5f);
+        invincible = false;    
+    }
+
 }

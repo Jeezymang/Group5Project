@@ -442,7 +442,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4043516031304294, guid: c4eaa3807fdec974b87d3a6f10ddfb2a, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.35
+      value: 2.12
       objectReference: {fileID: 0}
     - target: {fileID: 4043516031304294, guid: c4eaa3807fdec974b87d3a6f10ddfb2a, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2617,6 +2617,7 @@ MonoBehaviour:
   phoneSpeed: 10
   rotateSpeed: 1
   rig: {fileID: 0}
+  invincible: 0
 --- !u!4 &1063594767 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 9ac4dab98fc5f564c87a206dc12b9e70,
@@ -3495,7 +3496,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4452445200684454, guid: 71b7c024eb7937845923afc8160954ac, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 3.05
+      value: 1.75
       objectReference: {fileID: 0}
     - target: {fileID: 4452445200684454, guid: 71b7c024eb7937845923afc8160954ac, type: 2}
       propertyPath: m_LocalPosition.z
