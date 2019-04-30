@@ -35,7 +35,7 @@ public class PointSpawner : MonoBehaviour {
         else if (rand > 1)
         {
             //Spawn Coin
-            Instantiate(CoinPrefab, transform.position + new Vector3(0, 1, 0), Quaternion.identity);
+            Instantiate(CoinPrefab, transform.position + new Vector3(0, 1, 0), CoinPrefab.transform.rotation);
         }
 
         //Rerun routine

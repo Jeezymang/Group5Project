@@ -9,6 +9,9 @@ TagManager:
   - handle
   - star
   - speed
+  - coinX2
+  - jump
+  - coi
   layers:
   - Default
   - TransparentFX

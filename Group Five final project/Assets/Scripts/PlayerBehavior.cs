@@ -10,6 +10,7 @@ public class PlayerBehavior : MonoBehaviour {
     GameHandler gameHandler;
     public Rigidbody rig;
     public bool invincible = false;
+    public bool multiplier = false;
 
 	// Use this for initialization
 	void Start () {
@@ -70,7 +71,12 @@ public class PlayerBehavior : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Coin") {
-            gameHandler.addScore(1);
+            if (multiplier == false)
+            {
+                gameHandler.addScore(1);
+            }
+            else gameHandler.addScore(2);
+
             Destroy(other.gameObject);
         }
 
@@ -87,6 +93,14 @@ public class PlayerBehavior : MonoBehaviour {
             StopCoroutine(speedUp());
             StartCoroutine(speedUp());
         }
+
+        else if (other.gameObject.tag == "coi")
+        {
+            Destroy(other.gameObject);
+            StopCoroutine(coinX2());
+            StartCoroutine(coinX2());
+        }
+
     }
 
 
@@ -133,6 +147,13 @@ public class PlayerBehavior : MonoBehaviour {
         invincible = true;
         yield return new WaitForSeconds(5f);
         invincible = false;    
+    }
+
+    public IEnumerator coinX2()
+    {
+        multiplier = true;
+        yield return new WaitForSeconds(5f);
+        multiplier = false;
     }
 
 }
