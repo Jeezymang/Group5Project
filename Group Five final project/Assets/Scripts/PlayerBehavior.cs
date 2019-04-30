@@ -92,6 +92,23 @@ public class PlayerBehavior : MonoBehaviour {
             if (sceneCanvas)
                 sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
         }
+
+        else if (collision.gameObject.tag == "speed")
+        {
+            Destroy(collision.gameObject);
+            StopCoroutine(speedUp());
+            StartCoroutine(speedUp());
+        }
         
+    }
+
+    public IEnumerator speedUp()
+    {
+
+        speed *= 2;
+        yield return new WaitForSeconds(5f);
+        speed /= 2;
+
+
     }
 }
