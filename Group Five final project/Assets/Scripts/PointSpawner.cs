@@ -61,7 +61,7 @@ public class PointSpawner : MonoBehaviour {
             }
         }
         
-        Instantiate(chosenPrefab, transform.position, Quaternion.identity);
+        Instantiate(chosenPrefab, transform.position, chosenPrefab.transform.rotation);
         //Rerun routine
         StartCoroutine(Spawn(delay));
     }

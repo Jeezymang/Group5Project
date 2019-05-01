@@ -154,7 +154,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &18054187 stripped
 GameObject:
@@ -728,7 +728,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 89bbd0c25fbaabc4b93669fcf64e77b9, type: 3}
       propertyPath: m_RootOrder
-      value: 19
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 89bbd0c25fbaabc4b93669fcf64e77b9, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3709,6 +3709,12 @@ MonoBehaviour:
   CoinPrefab: {fileID: 1310158436412554, guid: 487122c7d4b74414eabefa4a7441b54d, type: 2}
   EnemyPrefab: {fileID: 1836463730039068, guid: b869ca948363b974f84a6b4073bdb592,
     type: 2}
+  JumpPrefab: {fileID: 1645957777804276, guid: 9f8793d3b13399d41b56be363aedce7e, type: 2}
+  StarPrefab: {fileID: 1267662142166590, guid: c4eaa3807fdec974b87d3a6f10ddfb2a, type: 2}
+  SpeedupPrefab: {fileID: 1909897556812810, guid: 71b7c024eb7937845923afc8160954ac,
+    type: 2}
+  DoubleCoinPrefab: {fileID: 1143153072935540, guid: 51bcef8432654cb4592aa35c01f25aa5,
+    type: 2}
 --- !u!1 &1583132357
 GameObject:
   m_ObjectHideFlags: 0
@@ -5061,7 +5067,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 18
+  m_RootOrder: 20
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2072582551
 Prefab:

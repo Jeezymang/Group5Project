@@ -23,6 +23,7 @@ GameObject:
   - component: {fileID: 23936505078786782}
   - component: {fileID: 95724994521773124}
   - component: {fileID: 65812254746680578}
+  - component: {fileID: 114099021671905296}
   m_Layer: 0
   m_Name: speedup
   m_TagString: speed
@@ -115,3 +116,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &114099021671905296
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1909897556812810}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43146a72bc6daaf4391d102ba7330eb8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  right: 1
+  side: 0
+  speed: 3

@@ -94,7 +94,7 @@ public class PlayerBehavior : MonoBehaviour {
         direction.x = Input.acceleration.x;
         direction.z = -Input.acceleration.z;
         //if (direction.sqrMagnitude > 1)
-        //    direction.Normalize();
+        //    direction.Normalize();.
 
         direction *= Time.deltaTime;
 
