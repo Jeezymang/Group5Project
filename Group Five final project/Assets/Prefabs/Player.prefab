@@ -124,6 +124,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19b5707ac82be5e4fbb3bcce3ab0f789, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 30
+  speed: 35
   phoneSpeed: 10
   rotateSpeed: 1
+  jumpPower: 250
+  maxVelocity: 20
+  rig: {fileID: 0}
+  invincible: 0
+  multiplier: 0
+  groundDistance: 0

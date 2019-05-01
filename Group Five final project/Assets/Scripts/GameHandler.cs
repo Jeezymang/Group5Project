@@ -6,7 +6,7 @@ public class GameHandler : MonoBehaviour {
 
     public int Score = 0;
     public bool IsPaused = false;
-
+    public bool CanJump = false;
 	// Use this for initialization
 	void Start () {
 		
