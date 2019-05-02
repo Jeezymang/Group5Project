@@ -15,7 +15,7 @@ public class GameOverMenu : MonoBehaviour {
         var handler = GameObject.Find("GameHandler");
         if (handler)
             gameHandler = handler.GetComponent<GameHandler>();
-
+       
         EndMenu.SetActive(false);
 	}
 	
@@ -34,6 +34,14 @@ public class GameOverMenu : MonoBehaviour {
     public void QuitPressed()
     {
         SceneManager.LoadScene("MainMenuScene");
+    }
+
+    void Update()
+    {
+     if (EndMenu.activeSelf == true)
+        {
+            gameHandler.gameAudio.Stop();
+        }    
     }
 
     IEnumerator PostScore(string name, int score)

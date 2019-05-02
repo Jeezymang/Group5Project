@@ -12,6 +12,7 @@ TagManager:
   - coinX2
   - jump
   - coi
+  - fly
   layers:
   - Default
   - TransparentFX

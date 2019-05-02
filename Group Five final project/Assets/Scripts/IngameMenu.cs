@@ -64,5 +64,11 @@ public class IngameMenu : MonoBehaviour {
     {
         if (gameHandler == null) return;
         ScoreText.text = "Score: " + gameHandler.Score;
+
+        if (OptionsPanel.activeSelf)
+        {
+            gameHandler.gameAudio.Pause();
+        }
+        else gameHandler.gameAudio.UnPause();
     }
 }

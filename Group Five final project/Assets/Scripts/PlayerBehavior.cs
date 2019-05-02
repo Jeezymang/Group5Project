@@ -14,6 +14,9 @@ public class PlayerBehavior : MonoBehaviour {
     public bool invincible = false;
     public bool multiplier = false;
     public float groundDistance;
+    public AudioSource audi;
+    
+
 	// Use this for initialization
 	void Start () {
         var handler = GameObject.Find("GameHandler");
@@ -22,6 +25,7 @@ public class PlayerBehavior : MonoBehaviour {
         rig = this.gameObject.GetComponent<Rigidbody>();
         rig.freezeRotation = true;
         groundDistance = GetComponent<Collider>().bounds.extents.y;
+        audi = this.gameObject.GetComponent<AudioSource>();
     }
 
     public bool OnGround()
@@ -104,11 +108,14 @@ public class PlayerBehavior : MonoBehaviour {
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Coin") {
+            audi.Play();
+
             if (multiplier == false)
             {
                 gameHandler.addScore(1);
             }
             else gameHandler.addScore(2);
+            
 
             Destroy(other.gameObject);
         }
@@ -158,11 +165,16 @@ public class PlayerBehavior : MonoBehaviour {
         {
             if (invincible != true)
             {
+                gameHandler.gameAudio.clip=gameHandler.death;
+                gameHandler.gameAudio.Play();
+                gameHandler.gameAudio.loop = false;
                 Destroy(this.gameObject);
+                
             }
             Destroy(collision.gameObject);
             GameObject sceneCanvas = GameObject.Find("Canvas");
             if (sceneCanvas)
+                
                 sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
         }
 
@@ -202,5 +214,7 @@ public class PlayerBehavior : MonoBehaviour {
         yield return new WaitForSeconds(5f);
         gameHandler.CanJump = false;
     }
+
+    
 
 }
