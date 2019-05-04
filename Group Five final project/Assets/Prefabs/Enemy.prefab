@@ -128,6 +128,8 @@ MonoBehaviour:
   speed: 7
   FireEmitter: {fileID: 1363101805720634, guid: 6dffbda678cd4db4ba105da6df3d2846,
     type: 2}
+  explosionEmitter: {fileID: 1420443704335400, guid: 88773cbdf33a6f443b9fcf1a8d0ad45f,
+    type: 2}
 --- !u!195 &195309168086447982
 NavMeshAgent:
   m_ObjectHideFlags: 1

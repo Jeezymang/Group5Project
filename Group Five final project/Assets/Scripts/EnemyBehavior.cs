@@ -10,6 +10,7 @@ public class EnemyBehavior : MonoBehaviour {
     NavMeshAgent agent;
     Vector3 initialScale;
     public GameObject FireEmitter;
+    public GameObject explosionEmitter;
 	// Use this for initialization
 	void Start () {
         agent = GetComponent<NavMeshAgent>();
@@ -45,4 +46,10 @@ public class EnemyBehavior : MonoBehaviour {
         agent.speed = speed;
         //transform.position += transform.forward * speed * Time.deltaTime;*/
 	}
+
+    void OnDestroy()
+    {
+        Instantiate(explosionEmitter, this.transform.position, Quaternion.identity);
+
+    }
 }

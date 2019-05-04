@@ -175,6 +175,7 @@ public class PlayerBehavior : MonoBehaviour {
                 if (sceneCanvas)
                     sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
             }
+            gameHandler.addScore(3);
             Destroy(other.gameObject);
             return;
         }
