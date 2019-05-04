@@ -35,8 +35,7 @@ public class CameraFollow : MonoBehaviour {
             RaycastHit rayHit;
             if (Physics.Raycast(player.transform.position, transform.TransformDirection(-Vector3.forward), out rayHit, 15))
             {
-                Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward) * rayHit.distance, Color.yellow);
-                Debug.Log("Did Hit");
+                //Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward) * rayHit.distance, Color.yellow);
                 transform.position = new Vector3(rayHit.point.x, transform.position.y * 0.70f, rayHit.point.z);
             }
         }

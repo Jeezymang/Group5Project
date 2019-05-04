@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 95589696093922788}
   - component: {fileID: 65979994494791376}
   - component: {fileID: 114852503610649974}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: coinX2
   m_TagString: coi
   m_Icon: {fileID: 0}

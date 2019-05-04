@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 54185637455300956}
   - component: {fileID: 114968117393624864}
   - component: {fileID: 195309168086447982}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Enemy
   m_TagString: Foe
   m_Icon: {fileID: 0}
@@ -109,7 +109,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1836463730039068}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -126,6 +126,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 7
+  FireEmitter: {fileID: 1363101805720634, guid: 6dffbda678cd4db4ba105da6df3d2846,
+    type: 2}
 --- !u!195 &195309168086447982
 NavMeshAgent:
   m_ObjectHideFlags: 1

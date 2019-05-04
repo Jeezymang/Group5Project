@@ -129,7 +129,11 @@ MonoBehaviour:
   rotateSpeed: 1
   jumpPower: 250
   maxVelocity: 20
+  floatingTextFontSize: 18
+  starEmitter: {fileID: 1716981565106952, guid: 97a3cfc873db6a24f8f6a3f365748966,
+    type: 2}
   rig: {fileID: 0}
   invincible: 0
   multiplier: 0
   groundDistance: 0
+  audi: {fileID: 0}

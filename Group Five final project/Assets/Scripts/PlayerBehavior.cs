@@ -9,7 +9,9 @@ public class PlayerBehavior : MonoBehaviour {
     public float rotateSpeed = 1;
     public int jumpPower = 250;
     public int maxVelocity = 20;
+    public int floatingTextFontSize = 20;
     GameHandler gameHandler;
+    public GameObject starEmitter;
     public Rigidbody rig;
     public bool invincible = false;
     public bool multiplier = false;
@@ -85,10 +87,10 @@ public class PlayerBehavior : MonoBehaviour {
             if (Input.touchCount > 0 && Input.GetTouch(1).phase != TouchPhase.Began)
                 return;
 
-            var physobj = this.GetComponent<Rigidbody>();
+            var physObj = this.GetComponent<Rigidbody>();
             if (gameHandler.CanJump && OnGround())
             {
-                this.GetComponent<Rigidbody>().AddForce(0, jumpPower, 0);
+                physObj.AddForce(0, jumpPower, 0);
             }
         }
 
@@ -107,6 +109,7 @@ public class PlayerBehavior : MonoBehaviour {
 
     private void OnTriggerEnter(Collider other)
     {
+        Vector3 otherPosition = other.transform.position;
         if (other.gameObject.tag == "Coin") {
             audi.Play();
 
@@ -115,11 +118,12 @@ public class PlayerBehavior : MonoBehaviour {
                 gameHandler.addScore(1);
             }
             else gameHandler.addScore(2);
-            
 
+            Instantiate(starEmitter, other.transform.position, Quaternion.identity);
             Destroy(other.gameObject);
-        }
 
+            return;
+        }
         else if (other.gameObject.tag == "star")
         {
             Destroy(other.gameObject);
@@ -147,74 +151,92 @@ public class PlayerBehavior : MonoBehaviour {
             StopCoroutine(JumpPowerup());
             StartCoroutine(JumpPowerup());
         }
-
-    }
-
-
-    private void OnCollisionEnter(Collision collision)
-
-    {
-        if (collision.gameObject.tag == "Coin")
+        else if (other.gameObject.tag == "spawnrate")
         {
-            //Made the coin into a trigger.
-            //gameHandler.addScore(1);
-            //Destroy (collision.gameObject);
+            Destroy(other.gameObject);
+            StopCoroutine(SpawnRatePowerup());
+            StartCoroutine(SpawnRatePowerup());
         }
-
-        else if (collision.gameObject.tag == "Foe")
+        else if (other.gameObject.tag == "duration")
+        {
+            Destroy(other.gameObject);
+            StopCoroutine(DurationPowerup());
+            StartCoroutine(DurationPowerup());
+        }
+        else if (other.gameObject.tag == "Foe")
         {
             if (invincible != true)
             {
-                gameHandler.gameAudio.clip=gameHandler.death;
+                gameHandler.gameAudio.clip = gameHandler.death;
                 gameHandler.gameAudio.Play();
                 gameHandler.gameAudio.loop = false;
                 Destroy(this.gameObject);
-                
+                GameObject sceneCanvas = GameObject.Find("Canvas");
+                if (sceneCanvas)
+                    sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
             }
-            Destroy(collision.gameObject);
-            GameObject sceneCanvas = GameObject.Find("Canvas");
-            if (sceneCanvas)
-                
-                sceneCanvas.GetComponent<GameOverMenu>().EndMenu.SetActive(true);
+            Destroy(other.gameObject);
+            return;
         }
-
-        
-
-        
-        
+        else
+        {
+            return;
+        }
+        Instantiate(starEmitter, otherPosition, Quaternion.identity);
+        audi.PlayOneShot(gameHandler.powerupGet);
     }
 
     public IEnumerator speedUp()
     {
-
+        gameHandler.addFloatingText("+Speedup", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
         speed *= 2;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
         speed /= 2;
-
-
+        gameHandler.addFloatingText("-Speedup", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
     }
 
     public IEnumerator invulnerability()
     {
+        gameHandler.addFloatingText("+Invulnerability", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
         invincible = true;
-        yield return new WaitForSeconds(5f);
-        invincible = false;    
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
+        invincible = false;
+        gameHandler.addFloatingText("-Invulnerability", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
     }
 
     public IEnumerator coinX2()
     {
+        gameHandler.addFloatingText("+x2 Coins", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
         multiplier = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
         multiplier = false;
+        gameHandler.addFloatingText("-x2 Coins", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
     }
 
     public IEnumerator JumpPowerup()
     {
+        gameHandler.addFloatingText("+Jumping", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
         gameHandler.CanJump = true;
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
         gameHandler.CanJump = false;
+        gameHandler.addFloatingText("-Jumping", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
     }
 
-    
+    public IEnumerator SpawnRatePowerup()
+    {
+        gameHandler.addFloatingText("+Spawnrate", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
+        gameHandler.SpawnRate = 2;
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
+        gameHandler.SpawnRate = 5;
+        gameHandler.addFloatingText("-Spawnrate", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
+    }
 
+    public IEnumerator DurationPowerup()
+    {
+        gameHandler.addFloatingText("+Powerup Duration", Color.green, floatingTextFontSize, gameHandler.PowerupDuration);
+        gameHandler.PowerupDuration = 10f;
+        yield return new WaitForSeconds(gameHandler.PowerupDuration);
+        gameHandler.PowerupDuration = 5f;
+        gameHandler.addFloatingText("-Powerup Duration", Color.red, floatingTextFontSize, gameHandler.PowerupDuration);
+    }
 }
