@@ -17,6 +17,7 @@ public class PlayerBehavior : MonoBehaviour {
     public bool multiplier = false;
     public float groundDistance;
     public AudioSource audi;
+    private Quaternion localRotation;
     
 
 	// Use this for initialization
@@ -28,6 +29,7 @@ public class PlayerBehavior : MonoBehaviour {
         rig.freezeRotation = true;
         groundDistance = GetComponent<Collider>().bounds.extents.y;
         audi = this.gameObject.GetComponent<AudioSource>();
+        localRotation = this.transform.rotation;
     }
 
     public bool OnGround()
@@ -99,6 +101,8 @@ public class PlayerBehavior : MonoBehaviour {
         Vector3 direction = Vector3.zero;
         direction.x = Input.acceleration.x;
         direction.z = -Input.acceleration.z;
+        localRotation.y += Input.acceleration.x * speed;
+        localRotation.x += Input.acceleration.y * speed;
         //if (direction.sqrMagnitude > 1)
         //    direction.Normalize();.
 
