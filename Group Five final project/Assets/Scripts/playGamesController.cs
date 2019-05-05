@@ -10,7 +10,7 @@ using UnityEngine.UI;
 
 public class playGamesController : MonoBehaviour {
 
-   public Text Mtext;
+   
 
 	// Use this for initialization
 	void Start () {
@@ -36,7 +36,7 @@ public class playGamesController : MonoBehaviour {
             else
             {
                 Debug.LogError("Unable to sign in to Google Play Games Services");
-                Mtext.text = "Couldn't login to GOogle PLay Games Services";
+               
             }
 
         });
