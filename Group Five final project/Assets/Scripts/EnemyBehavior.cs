@@ -49,7 +49,7 @@ public class EnemyBehavior : MonoBehaviour {
 
     void OnDestroy()
     {
-        Instantiate(explosionEmitter, this.transform.position, Quaternion.identity);
+      //  Instantiate(explosionEmitter, this.transform.position, Quaternion.identity);
 
     }
 }

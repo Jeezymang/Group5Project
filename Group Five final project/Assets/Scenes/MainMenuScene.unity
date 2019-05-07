@@ -249,7 +249,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Spidercrawler
+  m_Text: Fly Run
 --- !u!222 &98222169
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -35,7 +35,7 @@ public class playGamesController : MonoBehaviour {
 
             else
             {
-                Debug.LogError("Unable to sign in to Google Play Games Services");
+                
                
             }
 
