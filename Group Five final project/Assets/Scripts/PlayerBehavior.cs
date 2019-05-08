@@ -109,6 +109,7 @@ public class PlayerBehavior : MonoBehaviour {
         direction *= Time.deltaTime;
 
         transform.position = transform.position += (direction * phoneSpeed);
+        transform.LookAt(transform.position += (direction * phoneSpeed));
     }
 
     private void OnTriggerEnter(Collider other)
